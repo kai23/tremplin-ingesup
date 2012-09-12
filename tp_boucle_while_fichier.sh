@@ -1,5 +1,8 @@
 #! /bin/bash
 
+
+fichier_temporaire=$(mktemp)
+
 while read entree
 do
     if [[ "$entree" == "q" ]]
@@ -7,11 +10,11 @@ do
         break
     fi
     echo "Saisie : $entree"
-    echo $entree >> /tmp/fichiertest
+    echo $entree >> $fichier_temporaire
 done
 
 echo "Terminaison normale"
-cat /tmp/fichiertest
-rm /tmp/fichiertest
+cat $fichier_temporaire
+rm $fichier_temporaire
 
 
